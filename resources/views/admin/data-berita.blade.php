@@ -1,36 +1,57 @@
-@extends('layout.app')
+@extends('layout.berita')
 
 @section('content')
-    <div class="user-dashboard">
-        <h1>Berita</h1>
-        <a class="btn btn-primary" href="{{url('/berita/create')}}" role="button">Tambah Data Berita</a>
-        <hr>
+<section class="content">
+    <div class="container-fluid">
         <div class="row">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>Judul Berita</td>
-                        <td>Isi Berita</td>
-                        <td>Foto Berita</td>
-                        <td>Tanggal Berita</td>
-                        <td>OPSI</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($berita as $b)
-                    <tr>
-                        <td> {{ $b->judul_berita}}</td>
-                        <td> {{ $b->isi_berita}}</td>
-                        <td> <img width="150px" src="{{ url('/file/'.$b->foto_berita) }}"></img></td>
-                        <td> {{ $b->tanggal_post}}</td>
-                        <td>
-                            <a href="/berita/edit/{{ $b -> Kode_berita}}" class="btn btn-warning">Edit</a>
-                            <a href="/berita/hapus/{{ $b -> Kode_berita}}" class="btn btn-danger">Hapus</a> 
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                    <a class="btn btn-primary btn-sm" href="{{ url('berita/create') }}" role="button">Tambah Data Berita</a>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Judul Berita</th>
+                                <th>Isi Berita</th>
+                                <th>Foto</th>
+                                <th>Tanggal Post</th>
+                                <th>OPSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($berita as $b)
+                            <tr>
+                                <td> {{ $b->judul_berita}}</td>
+                                <td> {{ $b->isi_berita}}</td>
+                                <td> 
+                                    <a href="{{ url('images/berita/'. $b->foto_berita) }}" target="_blank" rel="noopener noreferrer">Lihat Gambar</a>
+                                </td>
+                                <td> {{ $b->tanggal_post}}</td>
+                                <td>
+                                    <a href="{{ url ('berita/edit', $b -> id) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ url ('berita/hapus', $b -> id) }}" class="btn btn-danger">Hapus</a> 
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>    
+            </div>
         </div>
     </div>
+</section>
 @endsection

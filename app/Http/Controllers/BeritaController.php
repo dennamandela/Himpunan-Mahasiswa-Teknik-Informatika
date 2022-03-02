@@ -8,7 +8,7 @@ use App\Models\Berita;
 class BeritaController extends Controller
 {
     public function index(){
-
+        
         $berita = Berita::get();
 	    return view('admin.data-berita', ['berita' => $berita]);
     }
@@ -22,18 +22,15 @@ class BeritaController extends Controller
         $this->validate($request, [
             'judul_berita' => 'required',
             'isi_berita' => 'required',
-            'foto_berita' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'tanggal_post' => 'required',
+            'foto_berita' => 'required',
+            'tanggal_post' => 'required'
         ]);
 
-        //menyimpan data file yang di upload ke variabel $file
         $file = $request->file('foto_berita');
+        $nama_file = time()."_".$file->getClientOriginalExtension();
 
-        $nama_file = time()."_".$file->getClientOriginalName();
-
-        //isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'file';
-        $file->move($tujuan_upload,$nama_file);
+        $tujuan_upload = 'images/berita';
+        $file->move($tujuan_upload, $nama_file);
 
         Berita::create([
             'judul_berita' => $request->judul_berita,
@@ -42,5 +39,39 @@ class BeritaController extends Controller
             'tanggal_post' => $request->tanggal_post
         ]);
         return redirect('/berita');
+    }
+
+    public function edit($id){
+        $berita = Berita::find($id);
+        return view ('admin.edit-berita', ['berita' => $berita]);
+    }
+
+    public function update(Request $request, $id) {
+        $this->validate($request, [
+            'judul_berita' => 'required',
+            'isi_berita' => 'required',
+            'foto_berita' => 'required',
+            'tanggal_post' => 'required'
+        ]);
+
+        $berita = Berita::find($id);
+        $file = $berita->foto_berita;
+
+        $data = [
+            'judul_berita' => $request['judul_berita'],
+            'isi_berita' => $request['isi_berita'],
+            'foto_berita' => $file,
+            'tanggal_post' => $request['tanggal_post'],
+        ];
+
+        $request->foto_berita->move(public_path().'/images/berita', $file);
+        $berita->save($data);
+        return redirect('/berita');
+    }
+
+    public function hapus($id){
+        $berita = Berita::find($id);
+        $berita->delete();
+        return redirect()->back();
     }
 }

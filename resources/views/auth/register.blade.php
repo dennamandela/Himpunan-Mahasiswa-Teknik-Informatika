@@ -19,7 +19,7 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="#" class="h1"><b>HIMATIF</b>Register</a>
+      <a href="#" class="h1">Register</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Daftar keanggotaan baru!</p>
@@ -27,10 +27,26 @@
       <form action="{{ url('/prosesregister') }}" method="post">
           @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Username">
+          <input type="text" class="form-control" name="nama_anggota" placeholder="Nama">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="nim" placeholder="NIM">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-fingerprint"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="angkatan" placeholder="Angkatan, Contoh:2020">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-calendar"></span>
             </div>
           </div>
         </div>

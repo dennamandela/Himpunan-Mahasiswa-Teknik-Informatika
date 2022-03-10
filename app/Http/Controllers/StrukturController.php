@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Struktur;
+use App\Models\User;
+use Auth;
 
 class StrukturController extends Controller
 {
@@ -25,7 +27,8 @@ class StrukturController extends Controller
      */
     public function create()
     {
-        return view ('admin.organisasi.tambah');
+        $user = User::All();
+        return view ('admin.organisasi.tambah', compact('user'));
     }
 
     /**
@@ -56,6 +59,7 @@ class StrukturController extends Controller
             'nama' => $request->nama,
             'jabatan' => $request->jabatan,
 			'foto' => $nama_file,
+            'user_id' => Auth::user()->id,
 		]);
  
 		return redirect('/struktur');

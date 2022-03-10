@@ -10,6 +10,8 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\AnggotaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,7 @@ Route::post('/prosesregister',[AuthController::class, 'postregister']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'proseslogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::put('/profile/ubah-password', [AuthController::class, 'ubahPassword']);
 
 //data untuk aspirasi
 Route::get('/aspirasi', [AspirasiController::class, 'index'])->middleware('admin');
@@ -68,6 +71,17 @@ Route::post('/agendaAjax', [AgendaController::class, 'post']);
 /** ------------------------------------- Highlight Kegiatan ----------------------------------------- */
 
 Route::resource('/highlight', KegiatanController::class)->middleware('admin');
+
+/** ------------------------------------- Anggota ----------------------------------------- */
+
+Route::get('/anggota', [AnggotaController::class, 'index'])->middleware('admin');
+Route::get('/anggota/create', [AnggotaController::class, 'create']);
+
+/** ------------------------------------- User ----------------------------------------- */
+Route::get('/anggota/home', [UserController::class, 'index'])->middleware('auth');
+Route::get('/anggota/profil/', [UserController::class, 'editProfil']);
+Route::put('/anggota/profil/{id}', [UserController::class, 'updateProfil']);
+Route::get('/anggota/aspirasi', [UserController::class, 'createAspirasi']);
 
 ?>
 

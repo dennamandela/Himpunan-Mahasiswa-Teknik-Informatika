@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     public function anggota(){
-        return $this->hasOne(UserProfile::class);
+        return $this->hasOne(Anggota::class);
     }
 
     public function struktur(){

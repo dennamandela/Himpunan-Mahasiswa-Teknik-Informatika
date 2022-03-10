@@ -36,6 +36,15 @@
                                             <label for="nama">Nama</label>
                                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
                                         </div>
+                                        @foreach($user as $u)
+                                        @if($u->id == Auth::user()->id)
+                                        <div class="form-group">
+                                            <label for="jabatan">Email</label>
+                                            <input type="text" class="form-control" id="email" name="email" value="{{$u->email}}">
+                                            <input type="hidden" class="form-control" id="email" name="email" value="{{$u->id}}">
+                                        </div>
+                                        @endif
+                                        @endforeach
                                         <div class="form-group">
                                             <label for="jabatan">Jabatan</label>
                                             <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan">

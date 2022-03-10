@@ -116,5 +116,13 @@
 <script src="AdminLTE-3.1.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="AdminLTE-3.1.0/dist/js/pages/dashboard.js"></script>
+<script>
+  $(document).on('click', '.toggle-password', function(){
+    $(this).toggleClass("fa-eye fa-eye-slash");
+
+    var input = $('#password');
+    input.attr('type') === 'password' ? input.attr('type', 'text') : input.attr('type','password')
+  });
+  </script>
 </body>
 </html>

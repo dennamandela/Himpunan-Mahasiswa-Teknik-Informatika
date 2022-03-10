@@ -41,13 +41,15 @@
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Update Profil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Lupa Password</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Reset Password</a></li>
                         </ul>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
+                        @foreach ($struktur as $s)
+                        @if ($s->user->id == Auth::user()->id)
                             <div class="tab-pane" id="settings">
-                                <form class="form-horizontal" action="{{ url('/profile/update', $s -> id)}}" method="post">
+                                <form class="form-horizontal" action="{{ url('/profile/update',$s->id)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group row">
@@ -65,16 +67,10 @@
                                     <div class="form-group row">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control" id="email" value="{{$s->user -> email}}">
+                                            <input type="email" name="" class="form-control" id="email" value="{{$s->user -> email}}" readonly>
+                                            <input type="hidden" name="email" class="form-control" id="email" value="{{$s->user -> id}}">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputName2" class="col-sm-2 col-form-label">Username</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control" id="name" value="{{$s->user -> name}}">
-                                        </div>
-                                    </div>
-                
                                     <div class="form-group row">
                                         <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
                                         <div class="col-sm-10">
@@ -83,15 +79,13 @@
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="inputFoto" class="col-sm-2 col-form-label">Foto</label>
+                                        <label for="foto" class="col-sm-2 col-form-label"> Foto</label>
                                         <div class="col-sm-10">
-                                            <input type="file" name="foto" class="form-control" id="foto" value="{{$s->foto}}">
+                                        
+                                            <input type="file" name="foto" class="form-control" id="inputGroupFile">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <img width="150px" src="{{ url('images/struktur/'. $s->foto) }}">
-                                    </div>
-                                
+                            
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <button type="submit" class="btn btn-success">Simpan</button>
@@ -99,18 +93,29 @@
                                     </div>
                                 </form>
                             </div>
+                            @endif
+                            @endforeach
                             <div class="tab-pane" id="timeline">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" action="{{url ('/profile/ubah-password')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">NIM</label>
+                                        <label for="current_password" class="col-sm-2 col-form-label">Current Password</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                            <input type="password" class="form-control" id="current_password" name="current_password" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                                        <label for="password" class="col-sm-2 col-form-label">New Password</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                            <input type="password" class="form-control" id="password" name="password" required >
+                                            <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="float: right;margin-top:-27px;z-index: 2;position: relative;margin-right: 10px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password_confirmation" class="col-sm-2 col-form-label">Konfirmasi Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password_confirmation" class="form-control" id="password_confirmation" name="password_confirmation" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">

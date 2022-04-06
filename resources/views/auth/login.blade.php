@@ -1,88 +1,74 @@
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HIMATIF - Stmik Jabar | Login</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="AdminLTE-3.1.0/dist/css/adminlte.min.css">
+	<title>Login | HIMATIF STMIK JABAR</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="{{ url('assets-login/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url('assets-login/vendor/font-awesome/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url('assets-login/vendor/linearicons/style.css') }}">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{{ url('assets-login/css/main.css') }}">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="{{ url('assets-login/css/demo.css') }}">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ url('assets-login/img/apple-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ url('assets-login/img/favicon.png') }}">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="#" class="h1"><b>LOGIN</b></a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Silahkan masuk menggunakan akun Anda</p>
-      @if (session('error'))
-      <div class="alert alert-danger alert-block">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>{{session('error')}}</strong>
-      </div>
-      @endif
 
-      <form action="{{ url('/postlogin') }}" method="post">
-          @csrf
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-      <p class="mb-1">
-        <a href="forgot-password.html">Saya lupa password</a>
-      </p>
-      <p class="mb-0">
-        <a href="{{ url('/register') }}" class="text-center">Daftar menjadi anggota</a>
-      </p>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><h1>HIMATIF</h1></div>
+								<p class="lead">Login to your account</p>
+							</div>
+							<form class="form-auth-small" action="{{ url ('/postlogin') }}" method="post">
+                @csrf
+								<div class="form-group">
+									<label for="signin-email" class="control-label sr-only">Email</label>
+									<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="signin-password" class="control-label sr-only">Password</label>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+								</div>
+								<div class="form-group clearfix">
+									<label class="fancy-checkbox element-left">
+										<input type="checkbox">
+										<span>Remember me</span>
+									</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+								<div class="bottom">
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h1 class="heading">HIMATIF STMIK JABAR</h1>
+							<p>by Denna Mandela</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END WRAPPER -->
 </body>
+
 </html>

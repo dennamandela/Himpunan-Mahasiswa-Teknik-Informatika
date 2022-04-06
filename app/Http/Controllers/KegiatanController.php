@@ -62,7 +62,7 @@ class KegiatanController extends Controller
             'start' => $request->start,
 		]);
  
-		return redirect('/highlight');
+		return redirect('/highlight')->with('message', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -112,7 +112,7 @@ class KegiatanController extends Controller
         
         $request->foto->move(public_path().'/images/kegiatan', $file);
         $kegiatan->update($data);
-        return redirect('/highlight');
+        return redirect('/highlight')->with('message', 'Data Berhasil Diedit');
     }
 
     /**
@@ -125,6 +125,6 @@ class KegiatanController extends Controller
     {
         $kegiatan = Kegiatan::find($id);
         $kegiatan->delete();
-        return redirect('/highlight');
+        return redirect('/highlight')->with('message', 'Data Berhasil Dihapus');
     }
 }

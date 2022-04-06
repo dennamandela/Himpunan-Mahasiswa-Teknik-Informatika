@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Struktur;
 use App\Models\User;
+use App\Models\Aspirasi;
 use Illuminate\Validation\ValidationException;
 use Auth;
 use Hash;
@@ -12,16 +13,13 @@ use Hash;
 class AdminController extends Controller
 {
     public function index(){
-        return view ('admin.dashboard');
+        $aspirasi = Aspirasi::All()->count();
+        return view ('admin.dashboard', compact('aspirasi'));
     }
 
     public function profile(){
         $struktur = Struktur::with('user')->get();
         return view('admin.profil', ['struktur' => $struktur]);
-    }
-
-    public function aspirasi(){
-        
     }
 
     public function update(Request $request, $id)

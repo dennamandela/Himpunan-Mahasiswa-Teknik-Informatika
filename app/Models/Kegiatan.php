@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Kegiatan extends Model
 {
@@ -14,6 +15,10 @@ class Kegiatan extends Model
 
     public function event() {
         return $this->BelongsTo(Agenda::class);
+    }
+
+    public function highKegiatan() {
+        return url("/kegiatan/detail-kegiatan/{$this->id}-" . Str::slug($this->event->title));
     }
 }
 

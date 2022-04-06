@@ -49,7 +49,7 @@
                         @foreach ($struktur as $s)
                         @if ($s->user->id == Auth::user()->id)
                             <div class="tab-pane" id="settings">
-                                <form class="form-horizontal" action="{{ url('/profile/update',$s->id)}}" method="post" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="{{ url('admin/profile/update/',$s->id)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group row">
@@ -96,17 +96,17 @@
                             @endif
                             @endforeach
                             <div class="tab-pane" id="timeline">
-                                <form class="form-horizontal" action="{{url ('/profile/ubah-password')}}" method="post" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="{{url ('admin/profile/ubah-password')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group row">
-                                        <label for="current_password" class="col-sm-2 col-form-label">Current Password</label>
+                                        <label for="current_password" class="col-sm-2 col-form-label">Password Lama</label>
                                         <div class="col-sm-10">
                                             <input type="password" class="form-control" id="current_password" name="current_password" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="password" class="col-sm-2 col-form-label">New Password</label>
+                                        <label for="password" class="col-sm-2 col-form-label">Password Baru</label>
                                         <div class="col-sm-10">
                                             <input type="password" class="form-control" id="password" name="password" required >
                                             <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="float: right;margin-top:-27px;z-index: 2;position: relative;margin-right: 10px;"></span>

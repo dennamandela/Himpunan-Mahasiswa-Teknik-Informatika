@@ -25,7 +25,6 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>NIM</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
@@ -36,14 +35,13 @@
                         <tbody>
                         @foreach ($struktur as $s)
                             <tr>
-                                <td> {{ $s->id }}</td>
                                 <td> {{ $s->nim }}</td>
                                 <td> {{ $s->nama }}</td>
                                 <td> {{ $s->jabatan }}</td>
                                 <td>
                                 <a href="{{ url('images/struktur/'. $s->foto) }}" target="_blank" rel="noopener noreferrer">Lihat Foto</a>
                                 </td>
-                                <td><a href="{{ route ('struktur.edit', $s -> id) }}" class="btn btn-warning">Edit</a>|
+                                <td><a href="{{ route ('struktur.edit', $s -> id) }}" class="btn btn-warning">Edit</a> |
                                     <form action="{{ route ('struktur.destroy', $s -> id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

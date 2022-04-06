@@ -38,7 +38,7 @@
       <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{Auth::user()->name}}</a>
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
           aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="{{url ('/profile')}}">
+          <a class="dropdown-item" href="{{url ('admin/profile')}}">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profil
           </a>        

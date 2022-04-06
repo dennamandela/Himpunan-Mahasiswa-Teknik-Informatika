@@ -48,6 +48,10 @@ class User extends Authenticatable
     }
 
     public function struktur(){
-        return $this->hasOne(Struktur::class);
+        return $this->hasOne(Struktur::class, 'user_id');
+    }
+
+    public function aspirasi() {
+        return $this->hasMany(Aspirasi::class, 'user_id');
     }
 }

@@ -37,7 +37,7 @@
               
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-            events: SITEURL + "/agenda",
+            events: SITEURL + "/admin/agenda",
             displayEventTime: false,
             editable: true,
             eventRender: function (event, element, view) {
@@ -55,7 +55,7 @@
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
                     $.ajax({
-                        url: SITEURL + "/agendaAjax",
+                        url: SITEURL + "/admin/agendaAjax",
                         data: {
                             title: title,
                             start: start,
@@ -85,7 +85,7 @@
                     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
               
                     $.ajax({
-                        url: SITEURL + '/agendaAjax',
+                        url: SITEURL + '/admin/agendaAjax',
                         data: {
                             title: event.title,
                             start: start,
@@ -104,7 +104,7 @@
                     if (deleteMsg) {
                         $.ajax({
                             type: "POST",
-                            url: SITEURL + '/agendaAjax',
+                            url: SITEURL + '/admin/agendaAjax',
                             data: {
                                 id: event.id,
                                 type: 'delete'

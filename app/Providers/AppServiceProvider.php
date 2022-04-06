@@ -32,5 +32,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('writer', function(User $user){
             return $user->role === 'writer';
         });
+
+        Gate::define('anggota', function(User $user){
+            return $user->role === 'anggota';
+        });
     }
 }

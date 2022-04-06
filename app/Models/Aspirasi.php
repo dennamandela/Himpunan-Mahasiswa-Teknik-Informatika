@@ -11,5 +11,9 @@ class Aspirasi extends Model
 
     protected $table='aspirasi';
 
-    protected $fillable = ['tujuan_aspirasi', 'isi_aspirasi'];
+    protected $fillable = ['tujuan_aspirasi', 'isi_aspirasi', 'user_id'];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

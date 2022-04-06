@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Struktur;
+use Illuminate\Support\Str;
 use App\Models\User;
 use Auth;
 
@@ -54,14 +55,22 @@ class StrukturController extends Controller
 		$tujuan_upload = 'images/struktur';
 		$file->move($tujuan_upload,$nama_file);
  
-		Struktur::create([
-            'nim' => $request->nim,
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-			'foto' => $nama_file,
-            'user_id' => Auth::user()->id,
-		]);
- 
+		$user = new \App\Models\User;
+        $user->role = 'admin';
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->remember_token = Str::random(60);
+        $user->save();
+
+        $request->request->add(['user_id' => $user->id]);
+        $struktur = \App\Models\Struktur::create([
+            'nim' => $request['nim'],
+            'nama' => $request['nama'],
+            'jabatan' => $request['jabatan'],
+            'foto' => $nama_file,
+            'user_id' => $user->id
+        ]);
 		return redirect('/struktur');
     }
 

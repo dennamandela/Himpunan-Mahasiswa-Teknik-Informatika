@@ -10,7 +10,9 @@ class Anggota extends Model
     use HasFactory;
 
     protected $table='anggota';
-    protected $fillable = ['nim', 'nama_anggota','angkatan', 'user_id'];
+    protected $fillable = ['nim', 'nama_anggota', 'program_studi','tanggal_lahir','angkatan', 'jenis_kelamin', 'agama', 'foto', 'user_id'];
+    protected $dates = ['tanggal_lahir'];
+
 
     public function user (){
         return $this->belongsTo(User::class);

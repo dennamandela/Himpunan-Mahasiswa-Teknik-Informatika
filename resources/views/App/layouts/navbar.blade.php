@@ -58,7 +58,7 @@
                                     <i class="fas fa-door-open fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Selamat Datang
                                 </a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{ url('/logout')}}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

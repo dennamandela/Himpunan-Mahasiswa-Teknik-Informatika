@@ -71,7 +71,7 @@ class AuthController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'current_password' => 'Kata sandi Anda saat ini tidak cocok dengan catatan kami',   
+            'password' => 'Kata sandi Anda saat ini tidak cocok dengan catatan kami',   
         ]);
     }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/');
     }
 
 }

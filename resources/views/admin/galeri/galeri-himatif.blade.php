@@ -2,12 +2,12 @@
 
 @section('content')
 
-            @if(session('pesan'))
+            @if(session('message'))
             <div class="card-body">
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i> Pesan!</h5>
-                    {{session('pesan')}}
+                    {{session('message')}}
                 </div>
             </div>
             @endif
@@ -53,7 +53,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ url ('/admin/galeri/edit', $g -> id) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ url ('/admin/galeri/hapus', $g -> id) }}" class="btn btn-danger">Hapus</a> 
+                                    <a href="{{ url ('/admin/galeri/delete', $g -> id) }}" class="btn btn-danger">Hapus</a> 
                                 </td>
                             </tr>
                         @endforeach

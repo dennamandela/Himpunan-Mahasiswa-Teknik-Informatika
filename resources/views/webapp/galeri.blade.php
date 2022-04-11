@@ -38,7 +38,7 @@
 							@foreach($galeri as $g)
 							<div class="col-md-3 col-sm-6 col-xs-6 filtr-item " data-category="mix">
 								<div class="portfolio-block">
-									<img class="img-fluid" src="{{ url('/images/galeri'. $g->image) }}" alt="">
+									<img class="img-fluid" src="{{ url('images/galeri/'. $g->image) }}" alt="Galeri Himatif">
 									<div class="caption">
 										<h4><a href="{{$g->link_drive}}">{{$g->nama_kegiatan}}</a></h4>
 									</div>

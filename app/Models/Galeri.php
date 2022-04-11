@@ -10,4 +10,5 @@ class Galeri extends Model
     use HasFactory;
 
     protected $table='galeri';
+    protected $fillable = ['nama_kegiatan', 'link_drive', 'image'];
 }

@@ -65,37 +65,9 @@
 				</div>
 			</div>
 			<!-- /section title -->
-			<div class="col-md-8 mx-auto">
-				
+			<div class="col-md-12 mx-auto">
+				<img loading="lazy" class="img-fluid w-100" src="{{ url('template/images/strukturorganisasi_himatif.png') }}" alt="post-image">			
 			</div>
-		</div>
-	</div>
-</section>
-
-<section class="posts section">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-xl-6 col-lg-8">
-				<div class="title text-center ">
-					<h2>Pengurus Inti</h2>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			@foreach($struktur as $s)
-			<article class="col-lg-6 col-md-8">
-				<div class="post-item text-center">
-					<div class="media-wrapper">
-						<img loading="lazy" src="{{ url('images/struktur/'. $s->foto) }}" alt="Foto" class="img-fluid">
-					</div>
-
-					<div class="member-content">
-						<h3>{{$s->nama}}</h3>
-						<span>{{$s->jabatan}}</span>
-					</div>
-				</div>
-			</article>
-			@endforeach
 		</div>
 	</div>
 </section>
